@@ -471,11 +471,15 @@ Partial Public Class xcntlMainControl
 
     Private Sub gv_ShownEditor(ByVal sender As Object, ByVal e As System.EventArgs)
         Dim v As GridView = TryCast(sender, GridView)
-        ' Prepei na to dw kala (einai ola karfwmena
+        ' Prepei na to dw kala (einai ola karfwmena 
         If TypeOf v.ActiveEditor Is GridLookUpEdit Then
             Dim ed As GridLookUpEdit = TryCast(v.ActiveEditor, GridLookUpEdit)
-            ed.Name = v.GridControl.Name & "." & v.Name
+            'ed.Name = v.GridControl.Name & "." & v.Name
+            Dim n As String = v.FocusedColumn.ColumnEdit.Name
+            ed.Name = v.GridControl.Name & "." & v.Name & "." & n
             ChangeDs(ed)
+
+
             Dim rephlp As New clsContexMenuHelper(ed.Properties.View)
         End If
         'v.ActiveEditor.IsModified = GetRefreshFields(v.Name, v.FocusedColumn.FieldName)
